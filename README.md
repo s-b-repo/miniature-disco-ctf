@@ -124,8 +124,7 @@ How to Use the Script
 
     Save the script: Create a new file named setup_ctf.sh and paste the above code into the file.
 
-    bash
-
+ 
 nano setup_ctf.sh
 
 Make the script executable:
@@ -159,7 +158,6 @@ What the Script Does:
     Permissions:
         Adjusts file permissions so Apache can serve the PHP pages properly.
 
-ChatGPT
 
 Hydra is a powerful tool for brute-force password cracking. It can be used to attack many services like FTP, SSH, HTTP login forms, and more. In this guide, I'll walk you through the process of using Hydra to brute-force a login form, which is particularly useful in scenarios like the PHP CTF challenge mentioned earlier.
 Step-by-Step Guide to Using Hydra
